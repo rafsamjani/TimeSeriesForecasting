@@ -138,8 +138,9 @@ def main():
     # Plot ACF and PACF
     print("\n3. Analyzing ACF and PACF...")
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-    plot_acf(train, lags=20, ax=axes[0])
-    plot_pacf(train, lags=20, ax=axes[1])
+    max_lags = min(20, len(train) // 2 - 1)
+    plot_acf(train, lags=max_lags, ax=axes[0])
+    plot_pacf(train, lags=max_lags, ax=axes[1])
     plt.tight_layout()
     plt.savefig('arima_acf_pacf.png')
     print("ACF and PACF plots saved to 'arima_acf_pacf.png'")
